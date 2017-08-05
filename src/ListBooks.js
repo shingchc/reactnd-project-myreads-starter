@@ -13,18 +13,18 @@ class ListBooks extends Component {
     onUpdateBook: PropTypes.func.isRequired
   }
 
-  state = {
-    query: '',
-    // value: 'none',
-  }
+//   state = {
+//     query: '',
+//     // value: 'none',
+//   }
 
-  updateQuery = (query) => {
-    this.setState({ query: query.trim() })
-  }
+//   updateQuery = (query) => {
+//     this.setState({ query: query.trim() })
+//   }
 
-  clearQuery = () => {
-    this.setState({ query: '' })
-  }
+//   clearQuery = () => {
+//     this.setState({ query: '' })
+//   }
 
 //   handleShelfChange = () => {
 //       console.log("AC value="+event.target.value)
@@ -34,7 +34,7 @@ class ListBooks extends Component {
 
   render() {
     // const { books, onUpdateBook } = this.props
-    const { query } = this.state
+    // const { query } = this.state
 
     return (
         <div className="list-books">
@@ -55,8 +55,8 @@ class ListBooks extends Component {
                                     <div className="book-cover" style={{ width: 128, height: 174, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                     <div className="book-shelf-changer">
                                         <select onChange={event => this.props.onUpdateBook(book,event.target.value)}>
-                                        <option value="none" selected disabled>Move to...</option>
-                                        <option value="currentlyReading">Currently Reading</option>
+                                        <option value="none" disabled>Move to...</option>
+                                        <option value="currentlyReading" selected>Currently Reading</option>
                                         <option value="wantToRead" >Want to Read</option>
                                         <option value="read">Read</option>
                                         <option value="none">None</option>
@@ -89,9 +89,9 @@ class ListBooks extends Component {
                                     <div className="book-cover" style={{ width: 128, height: 174, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                     <div className="book-shelf-changer">
                                         <select onChange={event => this.props.onUpdateBook(book,event.target.value)}>
-                                        <option value="none" selected disabled>Move to...</option>
+                                        <option value="none"  disabled>Move to...</option>
                                         <option value="currentlyReading">Currently Reading</option>
-                                        <option value="wantToRead" >Want to Read</option>
+                                        <option value="wantToRead" selected>Want to Read</option>
                                         <option value="read">Read</option>
                                         <option value="none">None</option>
                                         </select>
@@ -123,10 +123,10 @@ class ListBooks extends Component {
                                     <div className="book-cover" style={{ width: 128, height: 174, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                                     <div className="book-shelf-changer">
                                         <select onChange={event => this.props.onUpdateBook(book,event.target.value)}>
-                                        <option value="none" selected disabled>Move to...</option>
+                                        <option value="none"  disabled>Move to...</option>
                                         <option value="currentlyReading">Currently Reading</option>
                                         <option value="wantToRead" >Want to Read</option>
-                                        <option value="read">Read</option>
+                                        <option value="read" selected>Read</option>
                                         <option value="none">None</option>
                                         </select>
                                     </div>

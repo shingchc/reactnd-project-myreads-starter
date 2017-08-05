@@ -13,11 +13,12 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: true,
+    showSearchPage: false,
     currentBooks: [],
     wantedBooks: [],
     readBooks: [],
-    books: []
+    books: [],
+    searchedBooks: []
   }
 
   componentDidMount() {
@@ -26,7 +27,8 @@ class BooksApp extends React.Component {
         books: booksDB,
         readBooks: booksDB.filter((book) => (book.shelf === 'read')),
         wantedBooks: booksDB.filter((book) => (book.shelf === 'wantToRead')),
-        currentBooks: booksDB.filter((book) => (book.shelf === 'currentlyReading'))
+        currentBooks: booksDB.filter((book) => (book.shelf === 'currentlyReading')),
+        searchedBooks: []
       })
       console.log("AC componentDidMount books.length" + this.state.books.length)
       console.log("AC componentDidMount currentBooks.length" + this.state.currentBooks.length)
@@ -34,6 +36,26 @@ class BooksApp extends React.Component {
       console.log("AC componentDidMount readBooks.length" + this.state.readBooks.length)  
     })
   
+  }
+
+  // updateQuery = (query) => {
+  //   console.log("AC updateQuery="+query)
+  //   this.setState({ query: query.trim() })
+  // }
+
+  searchBook = (query) => {
+    console.log("AC searchBook query="+query)
+    BooksAPI.search(query,10).then((booksDB) => {
+
+      if (booksDB)  {
+        this.setState({
+          searchedBooks: booksDB
+        })
+        console.log("AC searchBook1 booksDB.length="+booksDB.length)
+      }
+      console.log("AC searchBook2 searchedBooks.length="+this.state.searchedBooks.length)
+    })
+    console.log("AC searchBook3 searchedBooks.length="+this.state.searchedBooks.length)
   }
 
   updateBook = (book,shelf) => {
@@ -67,34 +89,13 @@ class BooksApp extends React.Component {
           />
         )}/>
         <Route path='/search' render={({history}) => (
-          <SearchBooks/>
+          <SearchBooks
+            searchedBooks={this.state.searchedBooks}
+            onSearchBook={this.searchBook}
+            onUpdateBook={this.updateBook}
+          />
         )}/>
       </div>
-      
-      // <div className="app">
-      //   {this.state.showSearchPage ? (
-      //     <div className="search-books">
-      //       <div className="search-books-bar">
-      //         <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a>
-      //         <div className="search-books-input-wrapper">
-      //           {/* 
-      //             NOTES: The search from BooksAPI is limited to a particular set of search terms.
-      //             You can find these search terms here:
-      //             https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-                  
-      //             However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-      //             you don't find a specific author or title. Every search is limited by search terms.
-      //           */}
-      //           <input type="text" placeholder="Search by title or author"/>
-                
-      //         </div>
-      //       </div>
-      //       <div className="search-books-results">
-      //         <ol className="books-grid"></ol>
-      //       </div>
-      //     </div>
-      //   ) : (
-      // </div>
     )
   }
 }

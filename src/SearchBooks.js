@@ -30,22 +30,14 @@ class SearchBooks extends Component {
     const { query } = this.state
 
      let showingResult = searchedBooks
-    // if (query) {
-    //   const match = new RegExp(escapeRegExp(query), 'i')
-    //   showingContacts = this.props.searchedBooks.filter(() => match.test(contact.name))
-    // } else {
-    //   showingContacts = contacts
-    // }
-
-    // // showingContacts.sort(sortBy('name'))    
-    console.log("AC SearchBooks showingResult.length="+showingResult.length)
+   
+    // console.log("AC SearchBooks showingResult.length="+showingResult.length)
 
     return (
       <div className="app">
           <div className="search-books">
             <div className="search-books-bar">
               <Link className="close-search" to='/'>Close</Link>
-              {/* <a className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</a> */}
               <div className="search-books-input-wrapper">
                 {/* 
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -70,7 +62,7 @@ class SearchBooks extends Component {
                                                  
                       <li>
                       <div className="book">
-                         {console.log(JSON.stringify(book))}  
+                         {/* {console.log(JSON.stringify(book))}   */}
                           <div className="book-top">
                           {((book.imageLinks) && (book.imageLinks.thumbnail)) ? (
                             <div className="book-cover" style={{ width: 128, height: 174, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>

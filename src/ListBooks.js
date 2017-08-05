@@ -13,28 +13,7 @@ class ListBooks extends Component {
     onUpdateBook: PropTypes.func.isRequired
   }
 
-//   state = {
-//     query: '',
-//     // value: 'none',
-//   }
-
-//   updateQuery = (query) => {
-//     this.setState({ query: query.trim() })
-//   }
-
-//   clearQuery = () => {
-//     this.setState({ query: '' })
-//   }
-
-//   handleShelfChange = () => {
-//       console.log("AC value="+event.target.value)
-//     // this.setState({value: event.target.value});
-//     // this.onUpdateBook(book,this.setState.value)
-//   }
-
   render() {
-    // const { books, onUpdateBook } = this.props
-    // const { query } = this.state
 
     return (
         <div className="list-books">
@@ -63,7 +42,6 @@ class ListBooks extends Component {
                                         </select>
                                     </div>
                                     </div>
-                                    {/* {JSON.stringify(book.imageLinks.thumbnail)}  */}
                                     <div className="book-title">{book.title}</div>
                                     <div className="book-authors">{book.authors.map(function(author,i)  {
                                         return (
@@ -152,7 +130,6 @@ class ListBooks extends Component {
                     to='/search'
                     className='open-search'
                 >Search book</Link>
-                {/* <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a> */}
             </div>
         </div>
     )

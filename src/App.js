@@ -13,7 +13,6 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false,
     currentBooks: [],
     wantedBooks: [],
     readBooks: [],
@@ -30,32 +29,27 @@ class BooksApp extends React.Component {
         currentBooks: booksDB.filter((book) => (book.shelf === 'currentlyReading')),
         searchedBooks: []
       })
-      console.log("AC componentDidMount books.length" + this.state.books.length)
-      console.log("AC componentDidMount currentBooks.length" + this.state.currentBooks.length)
-      console.log("AC componentDidMount wantedBooks.length" + this.state.wantedBooks.length)
-      console.log("AC componentDidMount readBooks.length" + this.state.readBooks.length)  
+      // console.log("AC componentDidMount books.length" + this.state.books.length)
+      // console.log("AC componentDidMount currentBooks.length" + this.state.currentBooks.length)
+      // console.log("AC componentDidMount wantedBooks.length" + this.state.wantedBooks.length)
+      // console.log("AC componentDidMount readBooks.length" + this.state.readBooks.length)  
     })
   
   }
 
-  // updateQuery = (query) => {
-  //   console.log("AC updateQuery="+query)
-  //   this.setState({ query: query.trim() })
-  // }
-
   searchBook = (query) => {
-    console.log("AC searchBook query="+query)
+    // console.log("AC searchBook query="+query)
     BooksAPI.search(query,10).then((booksDB) => {
 
       if (booksDB)  {
         this.setState({
           searchedBooks: booksDB
         })
-        console.log("AC searchBook1 booksDB.length="+booksDB.length)
+        // console.log("AC searchBook1 booksDB.length="+booksDB.length)
       }
-      console.log("AC searchBook2 searchedBooks.length="+this.state.searchedBooks.length)
+      // console.log("AC searchBook2 searchedBooks.length="+this.state.searchedBooks.length)
     })
-    console.log("AC searchBook3 searchedBooks.length="+this.state.searchedBooks.length)
+    // console.log("AC searchBook3 searchedBooks.length="+this.state.searchedBooks.length)
   }
 
   updateBook = (book,shelf) => {
@@ -68,10 +62,10 @@ class BooksApp extends React.Component {
           wantedBooks: booksDB.filter((book) => (book.shelf === 'wantToRead')),
           currentBooks: booksDB.filter((book) => (book.shelf === 'currentlyReading'))
         })
-        console.log("AC updateBook books.length" + this.state.books.length)
-        console.log("AC updateBook currentBooks.length" + this.state.currentBooks.length)
-        console.log("AC updateBook wantedBooks.length" + this.state.wantedBooks.length)
-        console.log("AC updateBook readBooks.length" + this.state.readBooks.length)
+        // console.log("AC updateBook books.length" + this.state.books.length)
+        // console.log("AC updateBook currentBooks.length" + this.state.currentBooks.length)
+        // console.log("AC updateBook wantedBooks.length" + this.state.wantedBooks.length)
+        // console.log("AC updateBook readBooks.length" + this.state.readBooks.length)
       })
     })
   }
@@ -81,7 +75,6 @@ class BooksApp extends React.Component {
       <div>
         <Route exact path='/' render={() => (
           <ListBooks
-            //books={this.state.books}
             readBooks={this.state.readBooks}
             wantedBooks={this.state.wantedBooks}
             currentBooks={this.state.currentBooks}

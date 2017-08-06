@@ -7,7 +7,8 @@ import escapeRegExp from 'escape-string-regexp'
 class SearchBooks extends Component {
   static propTypes = {
     onSearchBook: PropTypes.func.isRequired,
-    searchedBooks: PropTypes.array.isRequired
+    searchedBooks: PropTypes.array.isRequired,
+    books: PropTypes.array.isRequired
     // contacts: PropTypes.array.isRequired,
     // onDeleteContact: PropTypes.func.isRequired
   }
@@ -26,12 +27,25 @@ class SearchBooks extends Component {
   // }
 
   render() {
-    const { searchedBooks } = this.props
+    const { searchedBooks, books } = this.props
     const { query } = this.state
 
-     let showingResult = searchedBooks
-   
-    // console.log("AC SearchBooks showingResult.length="+showingResult.length)
+    let showingResult = searchedBooks
+    
+    // console.log("AC SearchBooks books.length="+books.length)
+
+    if (showingResult.length > 0)  {
+      showingResult.forEach(function(element) {
+
+        // console.log("AC SearchBooks element="+element.id + " title="+ element.title + " shelf="+element.shelf)
+        
+        let found = (books.find((book1) => (book1.id === element.id))) 
+        if (found)  {
+          // console.log("AC SearchBooks found="+found.id + " title="+ found.title + " shelf="+found.shelf)
+          element.shelf = found.shelf
+        }
+      }, this);
+    }
 
     return (
       <div className="app">
@@ -59,10 +73,10 @@ class SearchBooks extends Component {
               <ol className="books-grid">
               {
                   (showingResult.length > 0) && showingResult.map((book) => (
-                                                 
+
                       <li>
                       <div className="book">
-                         {/* {console.log(JSON.stringify(book))}   */}
+
                           <div className="book-top">
                           {((book.imageLinks) && (book.imageLinks.thumbnail)) ? (
                             <div className="book-cover" style={{ width: 128, height: 174, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
@@ -70,32 +84,12 @@ class SearchBooks extends Component {
                             <div className="book-cover" style={{ width: 128, height: 174 }}></div>                            
                           )}
                           <div className="book-shelf-changer">
-                              <select onChange={event => this.props.onUpdateBook(book,event.target.value)}>
-                              <option value="none" selected disabled>Move to...</option>
-
-                              {(book.shelf) && (book.shelf === "currentlyReading") ? (
-                                <option value="currentlyReading" selected>Currently Reading</option>
-                              ) : (
+                              <select value={book.shelf} onChange={event => this.props.onUpdateBook(book,event.target.value)}>
+                                <option value="non" disabled>Move to...</option>
                                 <option value="currentlyReading">Currently Reading</option>
-                              )}
-
-                              {(book.shelf) && (book.shelf === "wantToRead") ? (
-                                <option value="wantToRead" selected>Want to Read</option>
-                              ) : (
                                 <option value="wantToRead">Want to Read</option>
-                              )}
-
-                              {(book.shelf) && (book.shelf === "read") ? (
-                                <option value="read" selected>Read</option>
-                              ) : (
                                 <option value="read">Read</option>
-                              )}
-
-                              {(book.shelf) && (book.shelf === "none") ? (
-                                <option value="none" selected>None</option>
-                              ) : (
                                 <option value="none">None</option>
-                              )}
                               </select>
                           </div>
                           </div>

@@ -31,7 +31,11 @@ class ListBooks extends Component {
                                 <li>
                                 <div className="book">
                                     <div className="book-top">
-                                    <div className="book-cover" style={{ width: 128, height: 174, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                                    {((book.imageLinks) && (book.imageLinks.thumbnail)) ? (
+                                        <div className="book-cover" style={{ width: 128, height: 174, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                                    ) : (
+                                        <div className="book-cover" style={{ width: 128, height: 174 }}></div>                            
+                                    )}
                                     <div className="book-shelf-changer">
                                         <select onChange={event => this.props.onUpdateBook(book,event.target.value)}>
                                         <option value="none" disabled>Move to...</option>
@@ -43,11 +47,7 @@ class ListBooks extends Component {
                                     </div>
                                     </div>
                                     <div className="book-title">{book.title}</div>
-                                    <div className="book-authors">{book.authors.map(function(author,i)  {
-                                        return (
-                                            <span>{author}<br/></span>
-                                        )    
-                                    })}</div>
+                                    <div className="book-authors">{(book.authors) && (book.authors.length > 0) && book.authors.map((author) => (<span>{author}</span>))}</div>
                                 </div>
                                 </li>
                             ))
@@ -64,7 +64,11 @@ class ListBooks extends Component {
                                 <li>
                                 <div className="book">
                                     <div className="book-top">
-                                    <div className="book-cover" style={{ width: 128, height: 174, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                                    {((book.imageLinks) && (book.imageLinks.thumbnail)) ? (
+                                        <div className="book-cover" style={{ width: 128, height: 174, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                                    ) : (
+                                        <div className="book-cover" style={{ width: 128, height: 174 }}></div>                            
+                                    )}
                                     <div className="book-shelf-changer">
                                         <select onChange={event => this.props.onUpdateBook(book,event.target.value)}>
                                         <option value="none"  disabled>Move to...</option>
@@ -77,11 +81,7 @@ class ListBooks extends Component {
                                     </div>
                                     {/* {JSON.stringify(book.imageLinks.thumbnail)}  */}
                                     <div className="book-title">{book.title}</div>
-                                    <div className="book-authors">{book.authors.map(function(author,i)  {
-                                        return (
-                                            <span>{author}<br/></span>
-                                        )    
-                                    })}</div>
+                                    <div className="book-authors">{(book.authors) && (book.authors.length > 0) && book.authors.map((author) => (<span>{author}</span>))}</div>
                                 </div>
                                 </li>
                             ))
@@ -98,7 +98,11 @@ class ListBooks extends Component {
                                 <li>
                                 <div className="book">
                                     <div className="book-top">
-                                    <div className="book-cover" style={{ width: 128, height: 174, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                                    {((book.imageLinks) && (book.imageLinks.thumbnail)) ? (
+                                        <div className="book-cover" style={{ width: 128, height: 174, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                                    ) : (
+                                        <div className="book-cover" style={{ width: 128, height: 174 }}></div>                            
+                                    )}
                                     <div className="book-shelf-changer">
                                         <select onChange={event => this.props.onUpdateBook(book,event.target.value)}>
                                         <option value="none"  disabled>Move to...</option>
@@ -111,11 +115,7 @@ class ListBooks extends Component {
                                     </div>
                                     {/* {JSON.stringify(book.imageLinks.thumbnail)}  */}
                                     <div className="book-title">{book.title}</div>
-                                    <div className="book-authors">{book.authors.map(function(author,i)  {
-                                        return (
-                                            <span>{author}<br/></span>
-                                        )    
-                                    })}</div>
+                                    <div className="book-authors">{(book.authors) && (book.authors.length > 0) && book.authors.map((author) => (<span>{author}</span>))}</div> 
                                 </div>
                                 </li>
                             ))

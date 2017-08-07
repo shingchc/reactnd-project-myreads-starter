@@ -47,7 +47,7 @@ class ListBooks extends Component {
                                     </div>
                                     </div>
                                     <div className="book-title">{book.title}</div>
-                                    <div className="book-authors">{(book.authors) && (book.authors.length > 0) && book.authors.map((author) => (<span>{author}</span>))}</div>
+                                    <div className="book-authors">{book.authors ? book.authors.join() : ''}</div>
                                 </div>
                                 </li>
                             ))
@@ -81,7 +81,7 @@ class ListBooks extends Component {
                                     </div>
                                     {/* {JSON.stringify(book.imageLinks.thumbnail)}  */}
                                     <div className="book-title">{book.title}</div>
-                                    <div className="book-authors">{(book.authors) && (book.authors.length > 0) && book.authors.map((author) => (<span>{author}</span>))}</div>
+                                    <div className="book-authors">{book.authors ? book.authors.join() : ''}</div>
                                 </div>
                                 </li>
                             ))
@@ -115,7 +115,7 @@ class ListBooks extends Component {
                                     </div>
                                     {/* {JSON.stringify(book.imageLinks.thumbnail)}  */}
                                     <div className="book-title">{book.title}</div>
-                                    <div className="book-authors">{(book.authors) && (book.authors.length > 0) && book.authors.map((author) => (<span>{author}</span>))}</div> 
+                                    <div className="book-authors">{book.authors ? book.authors.join() : ''}</div>
                                 </div>
                                 </li>
                             ))
